@@ -167,3 +167,5 @@ Consider varying gravity for different planetary conditions (e.g., Mars, Moon).
 
 Conclusion
 Through this task, we explored the fundamental principles of projectile motion and derived the governing equations. By analyzing how the range depends on the launch angle, initial velocity, and gravity, we gained insight into both the physics and practical applications of projectile motion. The implementation of a simulation further enhances the understanding by visualizing the relationships and behaviors. Finally, by reflecting on the limitations of the idealized model, we identified possible improvements for more accurate real-world modeling.
+
+![alt text](image.png)
