@@ -148,7 +148,7 @@ Output Interpretation
 This graph will display the projectile range as a function of the launch angle, showing that the range is maximized at a $45^\circ$ angle and decreases as the angle deviates from this optimal value.
 ```
 
-5. Limitations and Suggestions for Improvements:
+### 5. Limitations and Suggestions for Improvements:
 The current model assumes:
 
 No air resistance, which isn't realistic for most real-world projectiles.
