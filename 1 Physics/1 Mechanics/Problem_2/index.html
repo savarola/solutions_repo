@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Problem 2: Investigating the Dynamics of a Forced Damped Pendulum - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Problem 2: Investigating the Dynamics of a Forced Damped Pendulum";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,8 +48,34 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Investigating the Range as a Function of the Angle of Projection</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2: Investigating the Dynamics of a Forced Damped Pendulum</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#small-angle-approximation">Small-Angle Approximation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#resonance">Resonance</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-dynamics">2. Analysis of Dynamics</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-effects">Parameter Effects</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#transition-to-chaos">Transition to Chaos</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-implementation">4. Implementation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-simulation-outline">Python Simulation Outline</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +189,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Problem 2: Investigating the Dynamics of a Forced Damped Pendulum</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +197,99 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2">Problem 2</h1>
+<h1 id="problem-2-investigating-the-dynamics-of-a-forced-damped-pendulum">Problem 2: Investigating the Dynamics of a Forced Damped Pendulum</h1>
+<h2 id="motivation">Motivation</h2>
+<p>The forced damped pendulum represents a fascinating example of nonlinear dynamics. When both damping and external forcing are introduced, the pendulum displays a wide array of behaviors—from simple periodic motion to resonance and chaos. These dynamics mirror those found in systems such as climate models, mechanical resonators, and electrical circuits.</p>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<p>The motion of a forced damped pendulum is governed by the second-order nonlinear differential equation:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \sin\theta = A \cos(\omega t)
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\theta\)</span> is the angular displacement,</li>
+<li><span class="arithmatex">\(b\)</span> is the damping coefficient,</li>
+<li><span class="arithmatex">\(g\)</span> is the acceleration due to gravity,</li>
+<li><span class="arithmatex">\(L\)</span> is the length of the pendulum,</li>
+<li><span class="arithmatex">\(A\)</span> is the amplitude of the driving force,</li>
+<li><span class="arithmatex">\(\omega\)</span> is the driving frequency.</li>
+</ul>
+<h3 id="small-angle-approximation">Small-Angle Approximation</h3>
+<p>For small <span class="arithmatex">\(\theta\)</span>, we can use the approximation <span class="arithmatex">\(\sin\theta \approx \theta\)</span>, reducing the equation to:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \theta = A \cos(\omega t)
+\]</div>
+<p>This is a linear non-homogeneous differential equation with a general solution composed of a transient (homogeneous) and a steady-state (particular) solution.</p>
+<h3 id="resonance">Resonance</h3>
+<p>Resonance occurs when the driving frequency <span class="arithmatex">\(\omega\)</span> is close to the natural frequency of the system:</p>
+<div class="arithmatex">\[
+\omega_0 = \sqrt{\frac{g}{L}}
+\]</div>
+<p>At resonance, the system can exhibit large amplitude oscillations, especially when damping is low (<span class="arithmatex">\(b \ll 1\)</span>). The amplitude of steady-state oscillations is maximized near resonance.</p>
+<h2 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h2>
+<p>To study the system numerically, we convert the second-order equation into two first-order ODEs:</p>
+<p>Let:
+- <span class="arithmatex">\(\theta_1 = \theta\)</span>
+- <span class="arithmatex">\(\theta_2 = \frac{d\theta}{dt}\)</span></p>
+<p>Then:</p>
+<div class="arithmatex">\[
+\frac{d\theta_1}{dt} = \theta_2
+\]</div>
+<div class="arithmatex">\[
+\frac{d\theta_2}{dt} = -b \theta_2 - \frac{g}{L} \sin\theta_1 + A \cos(\omega t)
+\]</div>
+<h3 id="parameter-effects">Parameter Effects</h3>
+<ul>
+<li><strong>Damping (<span class="arithmatex">\(b\)</span>)</strong>: Reduces amplitude and can suppress chaotic behavior.</li>
+<li><strong>Driving Amplitude (<span class="arithmatex">\(A\)</span>)</strong>: Higher values can induce chaotic behavior.</li>
+<li><strong>Driving Frequency (<span class="arithmatex">\(\omega\)</span>)</strong>: Determines resonance conditions and the potential for complex behavior.</li>
+</ul>
+<h3 id="transition-to-chaos">Transition to Chaos</h3>
+<p>As parameters (e.g., <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(\omega\)</span>) are varied, the system transitions from periodic to quasiperiodic, and eventually to chaotic motion. Indicators include:</p>
+<ul>
+<li>Sensitivity to initial conditions,</li>
+<li>Strange attractors in phase space,</li>
+<li>Irregular time series.</li>
+</ul>
+<h2 id="3-practical-applications">3. Practical Applications</h2>
+<ul>
+<li><strong>Energy Harvesting Devices</strong>: Use resonant mechanical systems to convert vibrational energy.</li>
+<li><strong>Suspension Bridges</strong>: Modeled using driven oscillators under periodic loading.</li>
+<li><strong>Oscillating Electrical Circuits</strong>: Analogous to forced damped pendulums (e.g., RLC circuits).</li>
+<li><strong>Biomechanics</strong>: Human gait and limb motion can be approximated by driven pendulums.</li>
+</ul>
+<h2 id="4-implementation">4. Implementation</h2>
+<h3 id="python-simulation-outline">Python Simulation Outline</h3>
+<p>```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp</p>
+<h1 id="parameters">Parameters</h1>
+<p>g = 9.81
+L = 1.0
+b = 0.5
+A = 1.2
+omega = 2/3</p>
+<h1 id="ode-system">ODE System</h1>
+<p>def pendulum(t, y):
+    theta, omega_dot = y
+    dtheta_dt = omega_dot
+    domega_dt = -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)
+    return [dtheta_dt, domega_dt]</p>
+<h1 id="initial-conditions">Initial conditions</h1>
+<p>y0 = [0.2, 0.0]</p>
+<h1 id="time-span">Time span</h1>
+<p>t_span = (0, 100)
+t_eval = np.linspace(*t_span, 5000)</p>
+<h1 id="solve-ode">Solve ODE</h1>
+<p>sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)</p>
+<h1 id="plot-theta-vs-time">Plot theta vs time</h1>
+<p>plt.plot(sol.t, sol.y[0])
+plt.xlabel("Time (s)")
+plt.ylabel("Theta (rad)")
+plt.title("Forced Damped Pendulum")
+plt.grid()
+plt.show()</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
