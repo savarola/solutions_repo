@@ -314,15 +314,6 @@ y0 = [0.2, 0.0]</p>
     theta, omega_dot = y
     return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]</p>
 <p>sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)</p>
-<h2 id="visualizations">Visualizations</h2>
-<h3 id="1-time-series-of-thetat">1. Time Series of <span class="arithmatex">\(\theta(t)\)</span></h3>
-<p><img alt="Time Series" src="theta_time_series.png"/></p>
-<h3 id="2-phase-space-diagram">2. Phase Space Diagram</h3>
-<p><img alt="Phase Space" src="phase_space.png"/></p>
-<h3 id="3-poincare-section">3. Poincaré Section</h3>
-<p><img alt="Poincaré Section" src="poincare_section.png"/></p>
-<h3 id="4-bifurcation-diagram">4. Bifurcation Diagram</h3>
-<p><img alt="Bifurcation" src="bifurcation_diagram.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
