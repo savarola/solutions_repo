@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2: Investigating the Dynamics of a Forced Damped Pendulum - Physics and Mathematics</title>
+<title>Investigating the Dynamics of a Forced Damped Pendulum - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2: Investigating the Dynamics of a Forced Damped Pendulum";
+        var mkdocs_page_name = "Investigating the Dynamics of a Forced Damped Pendulum";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,7 +48,7 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Investigating the Range as a Function of the Angle of Projection</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2: Investigating the Dynamics of a Forced Damped Pendulum</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Investigating the Dynamics of a Forced Damped Pendulum</a>
 <ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
 </li>
@@ -73,14 +73,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#4-implementation">4. Implementation</a>
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#python-simulation-outline">Python Simulation Outline</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#1-time-series-thetat">1. Time Series: \(\\theta(t)\)</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#2-phase-space-diagram">2. Phase Space Diagram</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#3-poincare-section">3. Poincaré Section</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#4-bifurcation-diagram">4. Bifurcation Diagram</a>
 </li>
 </ul>
 </li>
@@ -197,7 +189,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2: Investigating the Dynamics of a Forced Damped Pendulum</li>
+<li class="breadcrumb-item active">Investigating the Dynamics of a Forced Damped Pendulum</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -205,7 +197,7 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2-investigating-the-dynamics-of-a-forced-damped-pendulum">Problem 2: Investigating the Dynamics of a Forced Damped Pendulum</h1>
+<h1 id="investigating-the-dynamics-of-a-forced-damped-pendulum">Investigating the Dynamics of a Forced Damped Pendulum</h1>
 <h2 id="motivation">Motivation</h2>
 <p>The forced damped pendulum represents a fascinating example of nonlinear dynamics. When both damping and external forcing are introduced, the pendulum displays a wide array of behaviors—from simple periodic motion to resonance and chaos. These dynamics mirror those found in systems such as climate models, mechanical resonators, and electrical circuits.</p>
 <h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
@@ -335,14 +327,9 @@ def pendulum(t, y):
 
 sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
 </code></pre>
-<h3 id="1-time-series-thetat">1. Time Series: <span class="arithmatex">\(\\theta(t)\)</span></h3>
-<p><img alt="Time Series" src="theta_time_series.png"/></p>
-<h3 id="2-phase-space-diagram">2. Phase Space Diagram</h3>
-<p><img alt="Phase Space" src="phase_space.png"/></p>
-<h3 id="3-poincare-section">3. Poincaré Section</h3>
-<p><img alt="Poincaré Section" src="poincare_section.png"/></p>
-<h3 id="4-bifurcation-diagram">4. Bifurcation Diagram</h3>
-<p><img alt="Bifurcation Diagram" src="bifurcation_diagram.png"/></p>
+<p><img alt="theta_vs_time" src="https://github.com/user-attachments/assets/183a069c-ac42-48b1-9d37-30908f70d5d9"/></p>
+<p><img alt="phase_space" src="https://github.com/user-attachments/assets/62aea638-ff6a-442f-a34c-527891bbddab"/></p>
+<p><img alt="theta_vs_time" src="https://github.com/user-attachments/assets/772dbf35-c819-4901-a027-e91ef24e5b42"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
