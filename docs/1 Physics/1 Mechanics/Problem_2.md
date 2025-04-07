@@ -136,11 +136,18 @@ def pendulum(t, y):
     return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]
 
 sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
 
-plt.figure(figsize=(10, 4))
-plt.plot(sol.t, sol.y[0])
-plt.xlabel('Time $t$')
-plt.ylabel('Angle $\\theta(t)$')
-plt.title('Forced Damped Pendulum - Time Series')
-plt.grid()
-plt.savefig("theta_time_series.png")
+# Parameters
+g, L, b, A, omega = 9.81, 1.0, 0.5, 1.2, 2/3
+t_span = (0, 100)
+t_eval = np.linspace(*t_span, 5000)
+y0 = [0.2, 0.0]
+
+def pendulum(t, y):
+    theta, omega_dot = y
+    return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]
+
+sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
