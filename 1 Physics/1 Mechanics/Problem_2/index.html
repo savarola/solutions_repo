@@ -74,6 +74,14 @@
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#python-simulation-outline">Python Simulation Outline</a>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#1-time-series-thetat">1. Time Series: \(\\theta(t)\)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-phase-space-diagram">2. Phase Space Diagram</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-poincare-section">3. Poincaré Section</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-bifurcation-diagram">4. Bifurcation Diagram</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -260,60 +268,81 @@
 </ul>
 <h2 id="4-implementation">4. Implementation</h2>
 <h3 id="python-simulation-outline">Python Simulation Outline</h3>
-<p>```python
-import numpy as np
+<pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp</p>
-<h1 id="parameters">Parameters</h1>
-<p>g = 9.81
+from scipy.integrate import solve_ivp
+
+# Parameters
+g = 9.81
 L = 1.0
 b = 0.5
 A = 1.2
-omega = 2/3</p>
-<h1 id="ode-system">ODE System</h1>
-<p>def pendulum(t, y):
+omega = 2/3
+
+# ODE System
+def pendulum(t, y):
     theta, omega_dot = y
     dtheta_dt = omega_dot
     domega_dt = -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)
-    return [dtheta_dt, domega_dt]</p>
-<h1 id="initial-conditions">Initial conditions</h1>
-<p>y0 = [0.2, 0.0]</p>
-<h1 id="time-span">Time span</h1>
-<p>t_span = (0, 100)
-t_eval = np.linspace(*t_span, 5000)</p>
-<h1 id="solve-ode">Solve ODE</h1>
-<p>sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)</p>
-<h1 id="plot-theta-vs-time">Plot theta vs time</h1>
-<p>plt.plot(sol.t, sol.y[0])
+    return [dtheta_dt, domega_dt]
+
+# Initial conditions
+y0 = [0.2, 0.0]
+
+# Time span
+t_span = (0, 100)
+t_eval = np.linspace(*t_span, 5000)
+
+# Solve ODE
+sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
+
+# Plot theta vs time
+plt.plot(sol.t, sol.y[0])
 plt.xlabel("Time (s)")
 plt.ylabel("Theta (rad)")
 plt.title("Forced Damped Pendulum")
 plt.grid()
-plt.show()</p>
-<p>import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp</p>
-<h1 id="parameters_1">Parameters</h1>
-<p>g, L, b, A, omega = 9.81, 1.0, 0.5, 1.2, 2/3
-t_span = (0, 100)
-t_eval = np.linspace(*t_span, 5000)
-y0 = [0.2, 0.0]</p>
-<p>def pendulum(t, y):
-    theta, omega_dot = y
-    return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]</p>
-<p>sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
+plt.show()
+
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp</p>
-<h1 id="parameters_2">Parameters</h1>
-<p>g, L, b, A, omega = 9.81, 1.0, 0.5, 1.2, 2/3
+from scipy.integrate import solve_ivp
+
+# Parameters
+g, L, b, A, omega = 9.81, 1.0, 0.5, 1.2, 2/3
 t_span = (0, 100)
 t_eval = np.linspace(*t_span, 5000)
-y0 = [0.2, 0.0]</p>
-<p>def pendulum(t, y):
+y0 = [0.2, 0.0]
+
+def pendulum(t, y):
     theta, omega_dot = y
-    return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]</p>
-<p>sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)</p>
+    return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]
+
+sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+# Parameters
+g, L, b, A, omega = 9.81, 1.0, 0.5, 1.2, 2/3
+t_span = (0, 100)
+t_eval = np.linspace(*t_span, 5000)
+y0 = [0.2, 0.0]
+
+def pendulum(t, y):
+    theta, omega_dot = y
+    return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]
+
+sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
+</code></pre>
+<h3 id="1-time-series-thetat">1. Time Series: <span class="arithmatex">\(\\theta(t)\)</span></h3>
+<p><img alt="Time Series" src="theta_time_series.png"/></p>
+<h3 id="2-phase-space-diagram">2. Phase Space Diagram</h3>
+<p><img alt="Phase Space" src="phase_space.png"/></p>
+<h3 id="3-poincare-section">3. Poincaré Section</h3>
+<p><img alt="Poincaré Section" src="poincare_section.png"/></p>
+<h3 id="4-bifurcation-diagram">4. Bifurcation Diagram</h3>
+<p><img alt="Bifurcation Diagram" src="bifurcation_diagram.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
