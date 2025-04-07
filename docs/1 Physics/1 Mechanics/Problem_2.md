@@ -1,4 +1,4 @@
-# Problem 2: Investigating the Dynamics of a Forced Damped Pendulum
+# Investigating the Dynamics of a Forced Damped Pendulum
 
 ## Motivation
 
@@ -153,14 +153,10 @@ def pendulum(t, y):
 sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
 ```
 
-### 1. Time Series: $\\theta(t)$
-![Time Series](theta_time_series.png)
+![theta_vs_time](https://github.com/user-attachments/assets/183a069c-ac42-48b1-9d37-30908f70d5d9)
 
-### 2. Phase Space Diagram
-![Phase Space](phase_space.png)
 
-### 3. Poincaré Section
-![Poincaré Section](poincare_section.png)
+![phase_space](https://github.com/user-attachments/assets/62aea638-ff6a-442f-a34c-527891bbddab)
 
-### 4. Bifurcation Diagram
-![Bifurcation Diagram](bifurcation_diagram.png)
+
+![theta_vs_time](https://github.com/user-attachments/assets/772dbf35-c819-4901-a027-e91ef24e5b42)
