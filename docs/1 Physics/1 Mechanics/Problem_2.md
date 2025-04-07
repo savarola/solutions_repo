@@ -151,3 +151,17 @@ def pendulum(t, y):
     return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]
 
 sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
+
+## Visualizations
+
+### 1. Time Series of $\theta(t)$
+![Time Series](theta_time_series.png)
+
+### 2. Phase Space Diagram
+![Phase Space](phase_space.png)
+
+### 3. Poincaré Section
+![Poincaré Section](poincare_section.png)
+
+### 4. Bifurcation Diagram
+![Bifurcation](bifurcation_diagram.png)
