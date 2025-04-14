@@ -74,8 +74,6 @@ R = \frac{v_0^2 \sin(2\theta)}{g}
 
 This is the equation for the range of a projectile.
 
-![0fd0547c-b46f-4aed-8213-ac696d80de1b](https://github.com/user-attachments/assets/b3e5feb4-9e93-42f9-804c-e104a2f1d4de)
-
 ## 2. Analysis of the Range:
 
 ### Range as a Function of the Launch Angle
@@ -99,7 +97,8 @@ Since $\sin(2\theta)$ reaches its maximum value of 1 when $2\theta = 90^\circ$, 
 
 Thus, the range is maximized at a $45^\circ$ launch angle. As $\theta$ deviates from $45^\circ$, the range decreases due to the behavior of the sine function.
 
-![3204d181-de03-48c2-9577-c4b219804a82](https://github.com/user-attachments/assets/2dac3de3-c822-48ad-b371-3c99cd73a324)
+![987a9a82-c4bd-45b5-8d7a-d8947d89a1ca](https://github.com/user-attachments/assets/b7ba1e03-5730-4371-8c5b-a8d9705f5d93)
+
 
 
 ### Influence of Initial Velocity and Gravitational Acceleration
