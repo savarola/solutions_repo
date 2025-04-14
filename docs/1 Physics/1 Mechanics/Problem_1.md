@@ -96,7 +96,48 @@ Since $\sin(2\theta)$ reaches its maximum value of 1 when $2\theta = 90^\circ$, 
 \]
 
 Thus, the range is maximized at a $45^\circ$ launch angle. As $\theta$ deviates from $45^\circ$, the range decreases due to the behavior of the sine function.
+``` python
+import matplotlib.pyplot as plt
+import numpy as np
 
+# Acceleration due to gravity
+g = 9.81
+
+# Function to compute trajectory
+def trajectory(v0, angle_deg):
+    angle_rad = np.radians(angle_deg)
+    flight_time = 2 * v0 * np.sin(angle_rad) / g
+    t = np.linspace(0, flight_time, num=200)
+    x = v0 * np.cos(angle_rad) * t
+    y = v0 * np.sin(angle_rad) * t - 0.5 * g * t**2
+    return x, y
+
+# Create subplots
+fig, axs = plt.subplots(2, 1, figsize=(10, 12))
+
+# (a) Different speeds at 45 degrees
+axs[0].set_title('(a) Different Initial Speeds at 45°')
+for v0, color in zip([30, 40, 50], ['orange', 'orangered', 'crimson']):
+    x, y = trajectory(v0, 45)
+    axs[0].plot(x, y, label=f'{v0} m/s', color=color)
+axs[0].set_xlabel('x (m)')
+axs[0].set_ylabel('y (m)')
+axs[0].legend()
+axs[0].grid(True)
+
+# (b) Same speed (50 m/s) with different angles
+axs[1].set_title('(b) Same Initial Speed (50 m/s) at Different Angles')
+for angle, color in zip([15, 45, 75], ['gold', 'darkorange', 'crimson']):
+    x, y = trajectory(50, angle)
+    axs[1].plot(x, y, label=f'{angle}°', color=color)
+axs[1].set_xlabel('x (m)')
+axs[1].set_ylabel('y (m)')
+axs[1].legend()
+axs[1].grid(True)
+
+plt.tight_layout()
+plt.show()
+```
 ![987a9a82-c4bd-45b5-8d7a-d8947d89a1ca](https://github.com/user-attachments/assets/b7ba1e03-5730-4371-8c5b-a8d9705f5d93)
 
 https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6
