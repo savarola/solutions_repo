@@ -151,8 +151,9 @@ plt.show()
 Output Interpretation
 This graph will display the projectile range as a function of the launch angle, showing that the range is maximized at a $45^\circ$ angle and decreases as the angle deviates from this optimal value.
 ```
+https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=hlaUyLsXjybk&line=52&uniqifier=1
 
-
+![alt text](image.png)
 ## 5. Limitations and Suggestions for Improvements:
 The current model assumes:
 
@@ -173,4 +174,3 @@ Consider varying gravity for different planetary conditions (e.g., Mars, Moon).
 Conclusion
 Through this task, we explored the fundamental principles of projectile motion and derived the governing equations. By analyzing how the range depends on the launch angle, initial velocity, and gravity, we gained insight into both the physics and practical applications of projectile motion. The implementation of a simulation further enhances the understanding by visualizing the relationships and behaviors. Finally, by reflecting on the limitations of the idealized model, we identified possible improvements for more accurate real-world modeling.
 
-![alt text](image.png)
