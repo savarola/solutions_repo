@@ -73,8 +73,6 @@ As parameters (e.g., $A$, $\omega$) are varied, the system transitions from peri
 - Strange attractors in phase space,
 - Irregular time series.
 
-![adc2321f-ff54-4d9f-b8a5-822fbfab08ef](https://github.com/user-attachments/assets/158fa377-ade0-432c-9dd7-f7b804fdfa53)
-
 ## 3. Practical Applications
 
 - **Energy Harvesting Devices**: Use resonant mechanical systems to convert vibrational energy.
@@ -154,5 +152,9 @@ def pendulum(t, y):
 
 sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
 ```
-![2d413031-58a8-488a-8433-4bb4373f5722](https://github.com/user-attachments/assets/1aab717e-f498-4b2c-b76d-5e9d8ca61eea)
+![image-6](https://github.com/user-attachments/assets/83529e9a-8130-4745-84b4-6857aaba3106)
+![image-7](https://github.com/user-attachments/assets/e31fbf78-23e9-4d27-a9c2-f2a250f32d36)
+![image-8](https://github.com/user-attachments/assets/8a65cf3d-7a63-4a31-9c2a-06f722a0e315)
+![image-9](https://github.com/user-attachments/assets/1a2c80fc-0238-42e4-a624-c5f8a289cee2)
+![image-10](https://github.com/user-attachments/assets/b5fd4fae-4688-4b28-b4b0-d9e33ce54901)
 
