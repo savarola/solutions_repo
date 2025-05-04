@@ -140,7 +140,7 @@ plt.show()
 ```
 ![987a9a82-c4bd-45b5-8d7a-d8947d89a1ca](https://github.com/user-attachments/assets/b7ba1e03-5730-4371-8c5b-a8d9705f5d93)
 
-https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6
+[Problem 1](https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6)
 
 ### Influence of Initial Velocity and Gravitational Acceleration
 
