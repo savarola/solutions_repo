@@ -140,7 +140,7 @@ plt.show()
 ```
 ![987a9a82-c4bd-45b5-8d7a-d8947d89a1ca](https://github.com/user-attachments/assets/b7ba1e03-5730-4371-8c5b-a8d9705f5d93)
 
-[Problem 1](https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6)
+[Visit My Collab](https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6)
 
 ### Influence of Initial Velocity and Gravitational Acceleration
 
@@ -192,7 +192,7 @@ plt.show()
 Output Interpretation
 This graph will display the projectile range as a function of the launch angle, showing that the range is maximized at a $45^\circ$ angle and decreases as the angle deviates from this optimal value.
 ```
-[Problem1](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=hlaUyLsXjybk&line=52&uniqifier=1)
+[Visit My Collab](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=hlaUyLsXjybk&line=52&uniqifier=1)
 
 ![alt text](image.png)
 ## 5. Limitations and Suggestions for Improvements:
