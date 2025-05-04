@@ -192,7 +192,7 @@ plt.show()
 Output Interpretation
 This graph will display the projectile range as a function of the launch angle, showing that the range is maximized at a $45^\circ$ angle and decreases as the angle deviates from this optimal value.
 ```
-https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=hlaUyLsXjybk&line=52&uniqifier=1
+[Problem1](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=hlaUyLsXjybk&line=52&uniqifier=1)
 
 ![alt text](image.png)
 ## 5. Limitations and Suggestions for Improvements:
