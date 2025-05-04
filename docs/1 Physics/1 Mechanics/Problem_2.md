@@ -83,78 +83,71 @@ As parameters (e.g., $A$, $\omega$) are varied, the system transitions from peri
 ## 4. Implementation
 
 ### Python Simulation Outline
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
-
-# Parameters
-g = 9.81
-L = 1.0
-b = 0.5
-A = 1.2
-omega = 2/3
-
-# ODE System
-def pendulum(t, y):
-    theta, omega_dot = y
-    dtheta_dt = omega_dot
-    domega_dt = -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)
-    return [dtheta_dt, domega_dt]
-
-# Initial conditions
-y0 = [0.2, 0.0]
-
-# Time span
-t_span = (0, 100)
-t_eval = np.linspace(*t_span, 5000)
-
-# Solve ODE
-sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
-
-# Plot theta vs time
-plt.plot(sol.t, sol.y[0])
-plt.xlabel("Time (s)")
-plt.ylabel("Theta (rad)")
-plt.title("Forced Damped Pendulum")
-plt.grid()
-plt.show()
-
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
-
-# Parameters
-g, L, b, A, omega = 9.81, 1.0, 0.5, 1.2, 2/3
-t_span = (0, 100)
-t_eval = np.linspace(*t_span, 5000)
-y0 = [0.2, 0.0]
-
-def pendulum(t, y):
-    theta, omega_dot = y
-    return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]
-
-sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
-
-# Parameters
-g, L, b, A, omega = 9.81, 1.0, 0.5, 1.2, 2/3
-t_span = (0, 100)
-t_eval = np.linspace(*t_span, 5000)
-y0 = [0.2, 0.0]
-
-def pendulum(t, y):
-    theta, omega_dot = y
-    return [omega_dot, -b * omega_dot - (g / L) * np.sin(theta) + A * np.cos(omega * t)]
-
-sol = solve_ivp(pendulum, t_span, y0, t_eval=t_eval)
-```
 ![image-6](https://github.com/user-attachments/assets/83529e9a-8130-4745-84b4-6857aaba3106)
 ![image-7](https://github.com/user-attachments/assets/e31fbf78-23e9-4d27-a9c2-f2a250f32d36)
 ![image-8](https://github.com/user-attachments/assets/8a65cf3d-7a63-4a31-9c2a-06f722a0e315)
 ![image-9](https://github.com/user-attachments/assets/1a2c80fc-0238-42e4-a624-c5f8a289cee2)
 ![image-10](https://github.com/user-attachments/assets/b5fd4fae-4688-4b28-b4b0-d9e33ce54901)
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+# Уравнение маятника: d²θ/dt² + b*dθ/dt + sin(θ) = A*cos(ω*t)
+def pendulum(t, y, b, A, omega):
+    theta, omega_ = y
+    dtheta_dt = omega_
+    domega_dt = -b * omega_ - np.sin(theta) + A * np.cos(omega * t)
+    return [dtheta_dt, domega_dt]
+
+# Визуализация: графики θ(t) и (θ, ω)
+def plot_pendulum(t, sol, title, color):
+    theta = sol[0]
+    omega = sol[1]
+
+    fig, ax = plt.subplots(1, 2, figsize=(14, 4))
+    fig.suptitle(title, fontsize=16)
+
+    ax[0].plot(t, theta, color=color)
+    ax[0].set_title("Time Series")
+    ax[0].set_xlabel("Time (s)")
+    ax[0].set_ylabel("Angle (rad)")
+    ax[0].grid(True)
+
+    ax[1].plot(theta, omega, color=color)
+    ax[1].set_title("Phase Portrait")
+    ax[1].set_xlabel("θ (rad)")
+    ax[1].set_ylabel("ω (rad/s)")
+    ax[1].grid(True)
+
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.85)  # чтобы заголовок не налезал
+    plt.show()
+
+# Параметры моделирования
+t_span = (0, 30)
+t_eval = np.linspace(*t_span, 2000)
+initial_state = [0.1, 0.0]  # начальный угол и угловая скорость
+
+# ===== 1. Simple Pendulum =====
+sol1 = solve_ivp(pendulum, t_span, initial_state, t_eval=t_eval, args=(0.0, 0.0, 0.0))
+plot_pendulum(sol1.t, sol1.y, "1) Simple Pendulum (b=0, A=0)", "crimson")
+
+# ===== 2. Damped Pendulum =====
+sol2 = solve_ivp(pendulum, t_span, initial_state, t_eval=t_eval, args=(0.5, 0.0, 0.0))
+plot_pendulum(sol2.t, sol2.y, "2) Damped Pendulum (b=0.5, A=0)", "darkblue")
+
+# ===== 3. Forced Pendulum =====
+sol3 = solve_ivp(pendulum, t_span, initial_state, t_eval=t_eval, args=(0.0, 1.0, 2.0))
+plot_pendulum(sol3.t, sol3.y, "3) Forced Pendulum (b=0, A=1.0, ω=2.0)", "teal")
+
+# ===== 4. Forced Damped Pendulum =====
+sol4 = solve_ivp(pendulum, t_span, initial_state, t_eval=t_eval, args=(0.2, 1.2, 2.0))
+plot_pendulum(sol4.t, sol4.y, "4) Forced Damped Pendulum (b=0.2, A=1.2, ω=2.0)", "orange")
+
+# ===== 5. Chaotic / Resonant Pendulum =====
+sol5 = solve_ivp(pendulum, t_span, initial_state, t_eval=t_eval, args=(0.5, 1.5, 2/3))
+plot_pendulum(sol5.t, sol5.y, "5) Chaotic / Resonant Pendulum (b=0.5, A=1.5, ω=2/3)", "firebrick")
+```
+[Visit My Collab](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=avf3de6KWdl0)
