@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 3 - Physics and Mathematics</title>
+<title>Trajectories of a Freely Released Payload Near Earth - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 3";
+        var mkdocs_page_name = "Trajectories of a Freely Released Payload Near Earth";
         var mkdocs_page_input_path = "1 Physics/2 Gravity/Problem_3.md";
         var mkdocs_page_url = null;
       </script>
@@ -58,8 +58,38 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Escape Velocities and Cosmic Velocities</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Trajectories of a Freely Released Payload Near Earth</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1-possible-trajectories-of-a-payload">1. Possible Trajectories of a Payload</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#11-types-of-trajectories">1.1 Types of Trajectories</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#12-deriving-the-equation-of-motion">1.2 Deriving the Equation of Motion</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-numerical-analysis-of-the-payloads-path">2. Numerical Analysis of the Payload's Path</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#21-initial-conditions-and-setup">2.1 Initial Conditions and Setup</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#22-equations-of-motion">2.2 Equations of Motion</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-computational-tool-and-visualization">3. Computational Tool and Visualization</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#31-explanation-of-the-python-code">3.1 Explanation of the Python Code</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#32-visualizing-the-trajectories">3.2 Visualizing the Trajectories</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-discussion-on-orbital-insertion-reentry-and-escape">4. Discussion on Orbital Insertion, Reentry, and Escape</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-conclusion">5. Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +193,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">2 Gravity</li>
-<li class="breadcrumb-item active">Problem 3</li>
+<li class="breadcrumb-item active">Trajectories of a Freely Released Payload Near Earth</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +201,53 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-3">Problem 3</h1>
+<h1 id="trajectories-of-a-freely-released-payload-near-earth">Trajectories of a Freely Released Payload Near Earth</h1>
+<h2 id="motivation">Motivation</h2>
+<p>When an object is released from a moving rocket near Earth, its trajectory depends on initial conditions and gravitational forces. This scenario presents a rich problem, blending principles of orbital mechanics and numerical methods. Understanding the potential trajectories is vital for space missions, such as deploying payloads or returning objects to Earth.</p>
+<h2 id="1-possible-trajectories-of-a-payload">1. Possible Trajectories of a Payload</h2>
+<h3 id="11-types-of-trajectories">1.1 Types of Trajectories</h3>
+<p>When a payload is released from a moving object near Earth, its trajectory depends on the initial velocity and position. The main types of trajectories are:
+- <strong>Parabolic Trajectory:</strong> The object follows a parabolic path when its velocity is less than the escape velocity but enough to travel away from the Earth.
+- <strong>Hyperbolic Trajectory:</strong> The object follows a hyperbolic trajectory when its velocity is greater than the escape velocity.
+- <strong>Elliptical Trajectory:</strong> The object follows an elliptical path when the velocity is not enough to escape Earth's gravity, resulting in an orbit.</p>
+<h3 id="12-deriving-the-equation-of-motion">1.2 Deriving the Equation of Motion</h3>
+<p>The motion of the payload can be described by Newton’s Law of Gravitation and the equations of motion. The gravitational force between two objects (Earth and the payload) is given by:</p>
+<div class="arithmatex">\[
+F = \frac{GMm}{r^2}
+\]</div>
+<p>where:
+- <span class="arithmatex">\(G\)</span> is the gravitational constant (<span class="arithmatex">\(6.67430 \times 10^{-11} \, \text{m}^3 \, \text{kg}^{-1} \, \text{s}^{-2}\)</span>),
+- <span class="arithmatex">\(M\)</span> is the mass of Earth (<span class="arithmatex">\(5.972 \times 10^{24} \, \text{kg}\)</span>),
+- <span class="arithmatex">\(m\)</span> is the mass of the payload,
+- <span class="arithmatex">\(r\)</span> is the distance between the payload and the center of Earth.</p>
+<p>The equations of motion can then be derived from this gravitational force, and numerical methods are used to simulate the motion over time.</p>
+<h2 id="2-numerical-analysis-of-the-payloads-path">2. Numerical Analysis of the Payload's Path</h2>
+<h3 id="21-initial-conditions-and-setup">2.1 Initial Conditions and Setup</h3>
+<p>For the simulation, we set the initial position of the payload at an altitude of 800 km above Earth's surface. The Earth's radius is approximately 6371 km, so the initial distance from the center of Earth is:</p>
+<div class="arithmatex">\[
+r_{\text{initial}} = 6371 \, \text{km} + 800 \, \text{km} = 7171 \, \text{km}
+\]</div>
+<p>We also release the payload with different initial velocities (5 km/s, 5.5 km/s, ..., up to 13 km/s). Each velocity results in a different trajectory, and we will simulate and visualize these paths.</p>
+<h3 id="22-equations-of-motion">2.2 Equations of Motion</h3>
+<p>The equations of motion are based on Newton's second law:</p>
+<div class="arithmatex">\[
+m \ddot{r} = -\frac{GMm}{r^2}
+\]</div>
+<p>where <span class="arithmatex">\(\ddot{r}\)</span> is the acceleration, and the negative sign indicates that the force is attractive (towards the Earth). The simulation involves solving this differential equation numerically using methods like Euler's method or the Runge-Kutta method.</p>
+<h2 id="3-computational-tool-and-visualization">3. Computational Tool and Visualization</h2>
+<p>A computational tool can be used to simulate and visualize the trajectory of the payload under Earth's gravity. This involves solving the equations of motion numerically for different initial velocities. The results will be plotted as the distance from Earth's center over time.</p>
+<h3 id="31-explanation-of-the-python-code">3.1 Explanation of the Python Code</h3>
+<p>The simulation involves updating the position and velocity of the payload at each time step using the gravitational force equation. The payload is released at 800 km above Earth's surface with varying initial velocities (from 5 km/s to 13 km/s). The Earth is represented as a reference point at the surface level, and the trajectory is computed numerically.</p>
+<h3 id="32-visualizing-the-trajectories">3.2 Visualizing the Trajectories</h3>
+<p>The plot generated from the simulation shows the trajectories of the payload for different initial velocities. The trajectories are plotted as a function of time, with the Earth's surface marked as a reference.</p>
+<h2 id="4-discussion-on-orbital-insertion-reentry-and-escape">4. Discussion on Orbital Insertion, Reentry, and Escape</h2>
+<ul>
+<li><strong>Orbital Insertion:</strong> If the payload's initial velocity is below escape velocity but high enough to prevent it from falling back to Earth, it will enter an elliptical orbit.</li>
+<li><strong>Reentry:</strong> If the velocity is too low, the payload will follow a parabolic trajectory and eventually reenter Earth's atmosphere.</li>
+<li><strong>Escape Velocity:</strong> If the initial velocity is equal to or greater than the escape velocity, the payload will follow a hyperbolic trajectory and escape Earth's gravitational influence.</li>
+</ul>
+<h2 id="5-conclusion">5. Conclusion</h2>
+<p>This analysis and simulation provide a clear understanding of how a payload's initial velocity affects its trajectory when released near Earth. By adjusting the initial conditions, we can model different space missions, such as satellite deployment or payload return.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
