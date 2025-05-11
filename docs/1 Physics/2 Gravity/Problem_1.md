@@ -97,33 +97,7 @@ The close match confirms the law.
 
 ---
 
-## 4. Computational Model in Python
-
-We simulate orbits and verify $T^2 \propto r^3$ using numerical methods.
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-G = 6.67430e-11  # Gravitational constant, m^3 kg^-1 s^-2
-M = 1.989e30     # Mass of the Sun, kg
-
-# Orbital radii from 0.5 AU to 10 AU
-radii = np.linspace(0.5, 10, 100) * 1.496e11  # Convert AU to meters
-periods = 2 * np.pi * np.sqrt(radii**3 / (G * M))  # Kepler's law
-
-# Plot T^2 vs r^3
-plt.figure(figsize=(8, 5))
-plt.plot(radii**3, periods**2, label='$T^2$ vs $r^3$')
-plt.xlabel('$r^3$ (m³)')
-plt.ylabel('$T^2$ (s²)')
-plt.title('Kepler\'s Third Law Verification')
-plt.grid(True)
-plt.legend()
-plt.tight_layout()
-plt.show()
-```
-## 5. Extension to Elliptical Orbits
+## 4. Extension to Elliptical Orbits
 
 Kepler's Third Law also applies to **elliptical orbits**, not just circular ones. In this generalized case, the orbital radius $r$ is replaced by the **semi-major axis** $a$ of the ellipse.
 
