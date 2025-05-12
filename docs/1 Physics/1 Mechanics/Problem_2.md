@@ -150,4 +150,4 @@ plot_pendulum(sol4.t, sol4.y, "4) Forced Damped Pendulum (b=0.2, A=1.2, ω=2.0)"
 sol5 = solve_ivp(pendulum, t_span, initial_state, t_eval=t_eval, args=(0.5, 1.5, 2/3))
 plot_pendulum(sol5.t, sol5.y, "5) Chaotic / Resonant Pendulum (b=0.5, A=1.5, ω=2/3)", "firebrick")
 ```
-[Visit My Collab](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=avf3de6KWdl0)
+[Visit My Collab](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=VIzI4f_vaXDI&line=60&uniqifier=1)
