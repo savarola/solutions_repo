@@ -132,6 +132,27 @@ For Jupiter:
 
 Similarly, the first and second cosmic velocities for Jupiter can be calculated, and the third cosmic velocity will again be affected by the position of Jupiter relative to the Sun.
 
+![image-2](https://github.com/user-attachments/assets/e2204abe-da06-4cf6-bfab-0bbde7d859f8)
+``` python
+import matplotlib.pyplot as plt
+
+bodies = ["Moon", "Earth", "Mars", "Jupiter"]
+v1 = [1.68, 7.9, 3.6, 42.1]
+v2 = [2.38, 11.2, 5.0, 59.5]
+
+x = range(len(bodies))
+
+plt.bar(x, v1, width=0.4, label="1st Cosmic Velocity", align='center')
+plt.bar([i + 0.4 for i in x], v2, width=0.4, label="2nd Cosmic Velocity", align='center')
+
+plt.xticks([i + 0.2 for i in x], bodies)
+plt.ylabel("Velocity (km/s)")
+plt.title("Comparison of Cosmic Velocities")
+plt.legend()
+plt.grid(axis='y')
+plt.show()
+```
+[Visit My Collab](https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6#scrollTo=qUl9FuiNcsPC&line=17&uniqifier=1)
 ## 4. Importance in Space Exploration
 
 ### 4.1 Launching Satellites
