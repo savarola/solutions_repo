@@ -95,8 +95,44 @@ The table below shows the empirical validation of $T^2 \propto r^3$ using Solar 
 
 The close match confirms the law.
 
----
+![image](https://github.com/user-attachments/assets/798b8c36-005e-4c25-9908-7bcc4bb9a890)
 
+``` python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Planet data
+planets = ['Mercury', 'Venus', 'Earth', 'Mars']
+T_years = [0.2408, 0.6152, 1.000, 1.8808]  # Orbital periods in Earth years
+a_AU = [0.387, 0.723, 1.000, 1.524]        # Semi-major axes in astronomical units (AU)
+
+# Calculate T^2 and a^3
+T_squared = [T**2 for T in T_years]
+a_cubed = [a**3 for a in a_AU]
+
+# Plotting the graph
+plt.figure(figsize=(8, 6))
+plt.plot(a_cubed, T_squared, 'o-', color='dodgerblue', label='Planets')
+
+# Annotate each planet
+for i, name in enumerate(planets):
+    plt.text(a_cubed[i] * 1.02, T_squared[i] * 0.98, name)
+
+# Add labels, title, grid, and reference line
+plt.title("Kepler's 3rd Law: $T^2$ vs $a^3$", fontsize=14)
+plt.xlabel("$a^3$ (AU³)", fontsize=12)
+plt.ylabel("$T^2$ (Years²)", fontsize=12)
+plt.grid(True)
+
+# Expected reference line with slope = 1 (perfect linear relation)
+plt.axline((0, 0), slope=1, color='gray', linestyle='--', label='Expected line (slope = 1)')
+
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
+[Visit My Collab](https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6#scrollTo=G8UDWIgkcKoD&line=33&uniqifier=1)
+---
 ## 4. Extension to Elliptical Orbits
 
 Kepler's Third Law also applies to **elliptical orbits**, not just circular ones. In this generalized case, the orbital radius $r$ is replaced by the **semi-major axis** $a$ of the ellipse.
