@@ -105,10 +105,66 @@ This yields:
 $$
 v_3 \approx 32.2 \, \text{km/s}
 $$
+## 3. 🚀 Derivation of the First and Second Cosmic Velocities
 
-## 3. Comparison with Other Celestial Bodies
+### 1️⃣ First Cosmic Velocity (Orbital Velocity)
 
-### 3.1 Moon
+The first cosmic velocity is the minimum speed an object needs to stay in a stable circular orbit near the Earth's surface without propulsion.
+
+Using Newton’s law of gravitation and centripetal force:
+
+$$
+F_{\text{gravity}} = F_{\text{centripetal}} \Rightarrow \frac{G M m}{r^2} = \frac{m v^2}{r}
+$$
+
+Cancel $m$ and solve for $v$:
+
+$$
+v = \sqrt{\frac{G M}{r}}
+$$
+
+Where:
+
+- $G$: Gravitational constant  
+- $M$: Mass of the planet (e.g., Earth)  
+- $r$: Radius from center of the planet  
+- $v$: First cosmic (orbital) velocity
+
+---
+
+### 2️⃣ Second Cosmic Velocity (Escape Velocity)
+
+Escape velocity is the minimum speed needed for an object to escape a planet's gravitational field without further propulsion.
+
+Using conservation of energy:
+
+$$
+\frac{1}{2} m v^2 - \frac{G M m}{r} = 0
+$$
+
+Solving for $v$:
+
+$$
+v = \sqrt{\frac{2 G M}{r}}
+$$
+
+This is **higher** than the first cosmic velocity by a factor of $\sqrt{2}$:
+
+$$
+v_{\text{escape}} = \sqrt{2} \cdot v_{\text{orbital}}
+$$
+
+---
+
+### 📘 Summary
+
+- First Cosmic Velocity: $v_1 = \sqrt{\frac{G M}{r}}$
+- Second Cosmic Velocity: $v_2 = \sqrt{\frac{2 G M}{r}}$
+- Relationship: $v_2 = \sqrt{2} \cdot v_1$
+
+## 4. Comparison with Other Celestial Bodies
+
+### 4.1 Moon
 
 For the Moon, the mass and radius are as follows:
 - $M_{\text{Moon}} = 7.347 \times 10^{22} \, \text{kg}$,
@@ -116,7 +172,7 @@ For the Moon, the mass and radius are as follows:
 
 Using the formulas for $v_1$ and $v_2$, we can calculate the first and second cosmic velocities for the Moon. The third cosmic velocity would be the same as for Earth, since the Moon is orbiting the Earth, and the third cosmic velocity is primarily influenced by the Earth's position relative to the Sun.
 
-### 3.2 Mars
+### 4.2 Mars
 
 For Mars:
 - $M_{\text{Mars}} = 6.4171 \times 10^{23} \, \text{kg}$,
@@ -124,7 +180,7 @@ For Mars:
 
 Again, using the formulas for $v_1$ and $v_2$, we can compute these values for Mars.
 
-### 3.3 Jupiter
+### 4.3 Jupiter
 
 For Jupiter:
 - $M_{\text{Jupiter}} = 1.898 \times 10^{27} \, \text{kg}$,
@@ -153,20 +209,20 @@ plt.grid(axis='y')
 plt.show()
 ```
 [Visit My Collab](https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6#scrollTo=qUl9FuiNcsPC&line=17&uniqifier=1)
-## 4. Importance in Space Exploration
+## 5. Importance in Space Exploration
 
-### 4.1 Launching Satellites
+### 5.1 Launching Satellites
 
 The first cosmic velocity is important for placing satellites into stable orbits around Earth. Achieving this velocity ensures that the satellite remains in orbit without falling back to the surface.
 
-### 4.2 Missions to Other Planets
+### 5.2 Missions to Other Planets
 
 The second cosmic velocity is crucial for missions aiming to escape Earth's gravitational influence, such as interplanetary missions. This velocity allows spacecraft to escape Earth’s gravity and travel to other planets.
 
-### 4.3 Potential for Interstellar Travel
+### 5.3 Potential for Interstellar Travel
 
 The third cosmic velocity is important when considering missions that aim to leave the Solar System entirely. While this velocity is beyond current technological capabilities, it is theoretically important for interstellar travel.
 
-## 5. Conclusion
+## 6. Conclusion
 
 Understanding the first, second, and third cosmic velocities is essential for modern space exploration, as these velocities determine the thresholds for orbital dynamics, escape, and interstellar missions.
