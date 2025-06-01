@@ -65,8 +65,65 @@ This is **Kepler’s Third Law** for circular orbits.
   The altitude and speed of satellites in Earth orbit can be precisely determined using this law.
 
 ---
+## 3. 🌞 Mass of the Sun via Kepler’s Third Law
 
-## 3. Real-World Examples
+### 📘 Theoretical Background
+
+Kepler’s Third Law states that the square of the orbital period of a planet is proportional to the cube of the semi-major axis of its orbit:
+
+$$
+T^2 \propto a^3
+$$
+
+Using Newton’s formulation of gravitation, we write:
+
+$$
+T^2 = \frac{4\pi^2 a^3}{G M}
+$$
+
+Where:
+
+- $T$: Orbital period in seconds  
+- $a$: Semi-major axis in meters  
+- $G$: Universal gravitational constant ($6.67430 \times 10^{-11} \, \text{m}^3\,\text{kg}^{-1}\,\text{s}^{-2}$)  
+- $M$: Mass of the central object (the Sun in this case)
+
+Solving for $M$:
+
+$$
+M = \frac{4\pi^2 a^3}{G T^2}
+$$
+
+---
+
+### 🌍 Estimating the Mass of the Sun Using Earth’s Orbit
+
+Using Earth's orbit, where:
+
+- $T = 365.25 \, \text{days} = 365.25 \times 24 \times 3600 \approx 31,557,600 \, \text{s}$
+- $a = 1 \, \text{AU} = 1.496 \times 10^{11} \, \text{m}$
+
+Substitute these values into the formula:
+
+$$
+M = \frac{4\pi^2 (1.496 \times 10^{11})^3}{(6.67430 \times 10^{-11})(31,557,600)^2}
+$$
+
+Which yields:
+
+$$
+M \approx 1.989 \times 10^{30} \, \text{kg}
+$$
+
+---
+
+### 🔍 Observations and Notes
+
+- The calculation above estimates the mass of the Sun using only Earth’s orbital characteristics.
+- The result aligns closely with the accepted value of the solar mass.
+- Kepler’s Third Law, when combined with Newtonian mechanics, allows us to infer properties of celestial bodies without directly observing them.
+
+## 4. Real-World Examples
 
 ### a) The Moon Orbiting Earth
 
@@ -133,7 +190,7 @@ plt.show()
 ```
 [Visit My Collab](https://colab.research.google.com/drive/129tNF5rjIBYXwBCIZvJQ8oBn96b2wOs6#scrollTo=G8UDWIgkcKoD&line=33&uniqifier=1)
 ---
-## 4. Extension to Elliptical Orbits
+## 5. Extension to Elliptical Orbits
 
 Kepler's Third Law also applies to **elliptical orbits**, not just circular ones. In this generalized case, the orbital radius $r$ is replaced by the **semi-major axis** $a$ of the ellipse.
 
