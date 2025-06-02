@@ -172,6 +172,108 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="circuits-problem-1-equivalent-resistance-using-graph-theory">⚡ Circuits Problem 1: Equivalent Resistance Using Graph Theory</h1>
+<h2 id="problem-statement">🎯 Problem Statement</h2>
+<p>We are given a complex electrical circuit represented as a graph, where multiple resistors span between two designated nodes: <strong>START</strong> and <strong>END</strong>.</p>
+<p>This circuit may contain arbitrarily nested series and parallel resistor configurations.</p>
+<p><strong>Goal</strong>: Simplify the circuit step by step and compute the <strong>total equivalent resistance</strong> <span class="arithmatex">\(R_{\text{eq}}\)</span> between the START and END nodes.</p>
+<hr/>
+<h2 id="conceptual-overview">🧠 Conceptual Overview</h2>
+<h3 id="graph-representation-of-a-circuit">Graph Representation of a Circuit:</h3>
+<ul>
+<li><strong>Nodes</strong>: represent electrical junctions.</li>
+<li><strong>Edges</strong>: represent resistors.</li>
+<li><strong>Weights on Edges</strong>: resistance values in ohms (<span class="arithmatex">\(\Omega\)</span>).</li>
+</ul>
+<p>By reducing the graph iteratively, we aim to collapse all intermediate connections and leave a single resistor between START and END with resistance <span class="arithmatex">\(R_{\text{eq}}\)</span>.</p>
+<hr/>
+<h2 id="algorithm-description">🔄 Algorithm Description</h2>
+<p>The circuit is simplified using an iterative algorithm based on identifying <strong>series</strong> and <strong>parallel</strong> resistor combinations.</p>
+<h3 id="step-1-detect-series-connections">🔹 Step 1: Detect Series Connections</h3>
+<ul>
+<li>A node with <strong>degree 2</strong> (connected to exactly two other nodes) and <strong>not</strong> being START or END is a candidate for a series reduction.</li>
+<li>The two resistors connected to this node are in series:
+  <span class="arithmatex">\(<span class="arithmatex">\(R_{\text{eq}} = R_1 + R_2\)</span>\)</span></li>
+<li>The node is removed, and the two edges are replaced by a single edge with the equivalent resistance.</li>
+</ul>
+<h3 id="step-2-detect-parallel-connections">🔹 Step 2: Detect Parallel Connections</h3>
+<ul>
+<li>If there are <strong>multiple edges between the same pair of nodes</strong>, these edges represent resistors in parallel.</li>
+<li>The equivalent resistance is calculated as:
+  <span class="arithmatex">\(<span class="arithmatex">\(R_{\text{eq}} = \left( \sum_{i=1}^{n} \frac{1}{R_i} \right)^{-1}\)</span>\)</span></li>
+<li>These parallel edges are removed and replaced by a single edge with the equivalent resistance.</li>
+</ul>
+<h3 id="step-3-repeat-until-simplified">🔁 Step 3: Repeat Until Simplified</h3>
+<ul>
+<li>The process is repeated:</li>
+<li>Detect and reduce series connections.</li>
+<li>Detect and reduce parallel connections.</li>
+<li>Continue until only a single edge remains between START and END.</li>
+</ul>
+<hr/>
+<h2 id="handling-nested-combinations">🔄 Handling Nested Combinations</h2>
+<p>This algorithm is recursive or iterative in nature:
+- Each iteration simplifies the current layer of the graph.
+- As the graph is reduced, deeper layers (nested series/parallel combinations) become exposed and simplified in subsequent steps.
+- This approach handles <strong>arbitrary complexity</strong> through repeated simplification passes.</p>
+<hr/>
+<h2 id="example-cases">🧪 Example Cases</h2>
+<h3 id="example-1-simple-series">Example 1: Simple Series</h3>
+<p>START --[ <span class="arithmatex">\(R_1 = 2\Omega\)</span> ]-- A --[ <span class="arithmatex">\(R_2 = 3\Omega\)</span> ]-- END</p>
+<ul>
+<li>Series reduction:
+  <span class="arithmatex">\(<span class="arithmatex">\(R_{\text{eq}} = R_1 + R_2 = 5\Omega\)</span>\)</span></li>
+</ul>
+<hr/>
+<h3 id="example-2-simple-parallel">Example 2: Simple Parallel</h3>
+<p>START --[ <span class="arithmatex">\(R_1 = 6\Omega\)</span> ]-- END<br/>
+START --[ <span class="arithmatex">\(R_2 = 3\Omega\)</span> ]-- END</p>
+<ul>
+<li>Parallel reduction:
+  <span class="arithmatex">\(<span class="arithmatex">\(R_{\text{eq}} = \left( \frac{1}{6} + \frac{1}{3} \right)^{-1} = 2\Omega\)</span>\)</span></li>
+</ul>
+<hr/>
+<h3 id="example-3-nested-series-and-parallel">Example 3: Nested Series and Parallel</h3>
+<p>START --[ <span class="arithmatex">\(R_1 = 2\Omega\)</span> ]-- A --[ <span class="arithmatex">\(R_2 = 4\Omega\)</span> ]-- B --[ <span class="arithmatex">\(R_3 = 2\Omega\)</span> ]-- END<br/>
+Also, A and B are connected via <span class="arithmatex">\(R_4 = 4\Omega\)</span> (in parallel with <span class="arithmatex">\(R_2\)</span>)</p>
+<ol>
+<li>
+<p>First reduce the parallel connection between A and B:
+   <span class="arithmatex">\(<span class="arithmatex">\(R_{AB} = \left( \frac{1}{4} + \frac{1}{4} \right)^{-1} = 2\Omega\)</span>\)</span></p>
+</li>
+<li>
+<p>Now, combine in series:
+   <span class="arithmatex">\(<span class="arithmatex">\(R_{\text{eq}} = R_1 + R_{AB} + R_3 = 2 + 2 + 2 = 6\Omega\)</span>\)</span></p>
+</li>
+</ol>
+<hr/>
+<h2 id="visualization-as-a-gif-or-sequence">🖼️ Visualization as a GIF or Sequence</h2>
+<p>To create an animated or step-by-step visualization:</p>
+<ol>
+<li><strong>Frame 1</strong>: Full resistor network as a graph.</li>
+<li><strong>Frame 2</strong>: Highlight and collapse a series connection.</li>
+<li><strong>Frame 3</strong>: Highlight and collapse a parallel connection.</li>
+<li><strong>Repeat</strong>: Continue until only a single resistor remains between START and END.</li>
+<li><strong>Final Frame</strong>: Display <span class="arithmatex">\(R_{\text{eq}}\)</span></li>
+</ol>
+<p>This sequence can be turned into a visual animation using a graph visualization library or diagramming tool.</p>
+<hr/>
+<h2 id="efficiency-and-extensions">📈 Efficiency and Extensions</h2>
+<h3 id="time-complexity-conceptual">Time Complexity (Conceptual):</h3>
+<ul>
+<li><strong>Best case</strong>: <span class="arithmatex">\(O(n)\)</span> (linear chain)</li>
+<li><strong>Average/Worst case</strong>: <span class="arithmatex">\(O(n^2)\)</span> or more, depending on connectivity and cycles</li>
+</ul>
+<h3 id="possible-improvements">Possible Improvements:</h3>
+<ul>
+<li>Detecting patterns using depth-first search (DFS)</li>
+<li>Using union-find data structures to track connected components</li>
+<li>Implementing advanced transformations (e.g., Y-Δ transforms)</li>
+</ul>
+<hr/>
+<h2 id="conclusion">✅ Conclusion</h2>
+<p>By modeling a circuit as a graph and applying a reduction algorithm that detects series and parallel resistors, we can efficiently compute equivalent resistance—even in highly complex networks.</p>
+<p>This approach demonstrates the powerful synergy between electrical engineering and graph theory, enabling automation, scalability, and deeper insights into circuit behavior.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
