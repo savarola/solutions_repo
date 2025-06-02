@@ -172,6 +172,116 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="electromagnetism-problem-1-simulating-the-effects-of-the-lorentz-force">⚡ Electromagnetism – Problem 1: Simulating the Effects of the Lorentz Force</h1>
+<h2 id="motivation">🎯 Motivation</h2>
+<p>The Lorentz force governs the motion of charged particles in electromagnetic fields and is described by the equation:</p>
+<div class="arithmatex">\[
+\vec{F} = q\vec{E} + q\vec{v} \times \vec{B}
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(q\)</span>: charge of the particle  </li>
+<li><span class="arithmatex">\(\vec{E}\)</span>: electric field  </li>
+<li><span class="arithmatex">\(\vec{B}\)</span>: magnetic field  </li>
+<li><span class="arithmatex">\(\vec{v}\)</span>: velocity of the particle</li>
+</ul>
+<p>This principle is foundational in:</p>
+<ul>
+<li>Plasma physics  </li>
+<li>Cyclotrons and synchrotrons  </li>
+<li>Mass spectrometry  </li>
+<li>Astrophysical plasmas</li>
+</ul>
+<hr/>
+<h2 id="task-overview">🧪 Task Overview</h2>
+<h3 id="1-applications-of-the-lorentz-force">1️⃣ Applications of the Lorentz Force</h3>
+<ul>
+<li><strong>Particle Accelerators</strong>: Magnetic fields guide charged particles in circular paths.  </li>
+<li><strong>Mass Spectrometers</strong>: Charged ions are deflected by <span class="arithmatex">\(\vec{B}\)</span>; trajectory radius reveals mass-to-charge ratio.  </li>
+<li><strong>Magnetic Confinement</strong>: In tokamaks, <span class="arithmatex">\(\vec{B}\)</span> confines hot plasma, minimizing loss.</li>
+</ul>
+<h3 id="2-simulating-particle-motion">2️⃣ Simulating Particle Motion</h3>
+<p>We numerically solve Newton's second law with the Lorentz force:</p>
+<div class="arithmatex">\[
+m\frac{d\vec{v}}{dt} = q\vec{E} + q\vec{v} \times \vec{B}
+\]</div>
+<p>Motion types:</p>
+<ul>
+<li><strong>Uniform <span class="arithmatex">\(\vec{B}\)</span> only</strong>: Circular or helical motion  </li>
+<li><strong>Uniform <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span></strong>: Spiral or drift motion  </li>
+<li><strong>Crossed <span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span></strong>: <span class="arithmatex">\(E \times B\)</span> drift behavior</li>
+</ul>
+<h3 id="3-parameter-exploration">3️⃣ Parameter Exploration</h3>
+<p>We allow variations in:</p>
+<ul>
+<li>Field strengths: <span class="arithmatex">\(\vec{E}, \vec{B}\)</span> </li>
+<li>Initial velocity: <span class="arithmatex">\(\vec{v}_0\)</span> </li>
+<li>Particle properties: <span class="arithmatex">\(q, m\)</span></li>
+</ul>
+<p>Phenomena to observe:</p>
+<ul>
+<li>
+<p><strong>Larmor radius</strong>:<br/>
+  $$
+  r_L = \frac{mv_\perp}{qB}
+  $$</p>
+</li>
+<li>
+<p><strong>Drift velocity</strong>:<br/>
+  $$
+  \vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2}
+  $$</p>
+</li>
+</ul>
+<h3 id="4-visualization">4️⃣ Visualization</h3>
+<ul>
+<li>2D and 3D trajectory plots  </li>
+<li>Visual cues for Larmor orbit and drift  </li>
+<li>Color-coded time or velocity representations</li>
+</ul>
+<hr/>
+<h1 id="circuits-problem-simplifying-a-resistor-network">🔌 Circuits – Problem: Simplifying a Resistor Network</h1>
+<h2 id="scenario">🎯 Scenario</h2>
+<p>Given a resistor network between two points (START and END), simplify the circuit using:</p>
+<ul>
+<li>Series and parallel combinations  </li>
+<li>Delta-Y and Y-Delta transformations  </li>
+<li>Visual animations (step-by-step or GIF)</li>
+</ul>
+<hr/>
+<h2 id="equivalent-resistance-formulas">🧮 Equivalent Resistance Formulas</h2>
+<ul>
+<li>
+<p><strong>Series combination</strong>:<br/>
+  $$
+  R_{\text{eq}} = R_1 + R_2 + \dots + R_n
+  $$</p>
+</li>
+<li>
+<p><strong>Parallel combination</strong>:<br/>
+  $$
+  \frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
+  $$</p>
+</li>
+<li>
+<p><strong>Delta to Y (symmetric case)</strong>:<br/>
+  $$
+  R_Y = \frac{R_\Delta}{3}
+  $$</p>
+</li>
+</ul>
+<hr/>
+<h2 id="deliverables">📦 Deliverables</h2>
+<ul>
+<li>A visual explanation of charged particle trajectories under various <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> fields  </li>
+<li>Labeled illustrations of how resistor networks reduce to simpler equivalents  </li>
+<li>Mathematical derivations with clear parameter definitions  </li>
+<li>Connections to real-world systems like cyclotrons, mass spectrometers, and power grids</li>
+</ul>
+<hr/>
+<blockquote>
+<p>✨ This simulation-based approach enhances intuition for electromagnetic forces and circuit analysis.</p>
+</blockquote>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
