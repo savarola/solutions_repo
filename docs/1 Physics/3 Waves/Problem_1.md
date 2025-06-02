@@ -110,5 +110,138 @@ print("✅ GIF saved as wave_interference_colored.gif")
 ```
 ![wave_interference_colored](https://github.com/user-attachments/assets/63909aaf-fe77-4e8a-b76f-f5561ae9b824)
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+from mpl_toolkits.mplot3d import Axes3D
 
+# --- Grid Setup ---
+size = 100  # smaller size for faster rendering
+x = np.linspace(-10, 10, size)
+y = np.linspace(-10, 10, size)
+X, Y = np.meshgrid(x, y)
 
+# --- Wave Function ---
+def wave_source(X, Y, x0, y0, t, wavelength=1, speed=1):
+    r = np.sqrt((X - x0)**2 + (Y - y0)**2)
+    k = 2 * np.pi / wavelength
+    omega = k * speed
+    return np.sin(k * r - omega * t) / (r + 1e-6)
+
+# --- Source Patterns ---
+def get_sources(pattern):
+    if pattern == "one":
+        return [(0, 0)]
+    elif pattern == "two":
+        return [(-3, 0), (3, 0)]
+    elif pattern == "triangle":
+        R = 4
+        angles = np.linspace(0, 2*np.pi, 4)[:-1]
+        return [(R * np.cos(a), R * np.sin(a)) for a in angles]
+    elif pattern == "pentagon":
+        R = 5
+        angles = np.linspace(0, 2*np.pi, 6)[:-1]
+        return [(R * np.cos(a), R * np.sin(a)) for a in angles]
+
+patterns = ["one", "two", "triangle", "pentagon"]
+
+# --- Plot Setup ---
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+Z = np.zeros_like(X)
+surf = ax.plot_surface(X, Y, Z, cmap='RdBu', vmin=-1, vmax=1, linewidth=0, antialiased=True)
+
+ax.set_zlim(-1, 1)
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Amplitude')
+title = ax.set_title("")
+
+# --- Frame Update Function ---
+def update(frame):
+    pattern = patterns[(frame // 20) % len(patterns)]
+    t = frame % 20
+    sources = get_sources(pattern)
+    Z = sum(wave_source(X, Y, sx, sy, t) for sx, sy in sources)
+    ax.clear()  # careful: only light clearing
+    surf = ax.plot_surface(X, Y, Z, cmap='RdBu', vmin=-1, vmax=1, linewidth=0, antialiased=True)
+    ax.set_zlim(-1, 1)
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Amplitude')
+    ax.set_title(f"Wave Interference: {pattern.capitalize()} ({len(sources)} source{'s' if len(sources) > 1 else ''})")
+    return surf,
+
+# --- Create Animation ---
+ani = animation.FuncAnimation(fig, update, frames=80, interval=100, blit=False)
+
+# --- Save Animation ---
+ani.save('/content/wave_interference_3d.gif', writer='pillow')
+plt.close()
+
+print("✅ 3D GIF saved as /content/wave_interference_3d.gif")
+```
+![wave_interference_3d](https://github.com/user-attachments/assets/178ef5a9-ddf3-4307-937b-949065372358)
+
+## 📊 Visualizations
+
+### ✅ One Source — Radial Symmetry
+
+- Circular ripples expanding outward from the center.
+- No interference is observed since there is only **one wavefront**.
+- The wave pattern is described by:
+
+$$
+\eta(x, y, t) = \frac{A}{r} \cdot \cos(k r - \omega t + \phi)
+$$
+
+Where:
+
+- $r = \sqrt{(x - x_0)^2 + (y - y_0)^2}$ is the radial distance from the source.
+- $k = \frac{2\pi}{\lambda}$ is the wave number.
+- $\omega = 2\pi f$ is the angular frequency.
+
+---
+
+### ✅ Two Sources — Classic Interference
+
+- Alternating **constructive** and **destructive** interference zones appear.
+- Central regions exhibit **lines of maxima and minima**, depending on the relative phase and path difference.
+- The total displacement is given by:
+
+$$
+\eta_{\text{sum}}(x, y, t) = \eta_1(x, y, t) + \eta_2(x, y, t)
+$$
+
+- Constructive interference occurs when:
+
+$$
+\Delta r = n \lambda, \quad n \in \mathbb{Z}
+$$
+
+- Destructive interference occurs when:
+
+$$
+\Delta r = \left(n + \frac{1}{2}\right)\lambda
+$$
+
+---
+
+### ✅ Triangle or Pentagon Configuration
+
+- Multiple coherent sources create **complex and symmetric interference patterns**.
+- Patterns form an intricate lattice due to overlapping wavefronts.
+- High symmetry and **periodicity** in amplification (constructive interference) and cancellation (destructive interference) regions.
+- The total displacement from $N$ sources:
+
+$$
+\eta_{\text{sum}}(x, y, t) = \sum_{i=1}^{N} \frac{A}{r_i} \cdot \cos(k r_i - \omega t + \phi_i)
+$$
+
+Where each $r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}$ is the distance from the $i^{\text{th}}$ source.
+
+---
+
+> 📌 These visualizations help reinforce key wave phenomena including superposition, phase difference, and spatial symmetry.
