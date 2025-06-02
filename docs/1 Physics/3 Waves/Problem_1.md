@@ -50,6 +50,7 @@ Where $r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}$ is the distance from the $i^{th}$
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from IPython.display import HTML
 
 # --- Grid Setup ---
 size = 200
@@ -91,7 +92,7 @@ ax.set_ylabel("y")
 
 # --- Frame Update Function ---
 def update(frame):
-    pattern = patterns[(frame // 20) % len(patterns)]  # Change pattern every 20 frames
+    pattern = patterns[(frame // 20) % len(patterns)]
     t = frame % 20
     sources = get_sources(pattern)
     Z = sum(wave_source(X, Y, sx, sy, t) for sx, sy in sources)
@@ -102,12 +103,10 @@ def update(frame):
 # --- Create Animation ---
 ani = animation.FuncAnimation(fig, update, frames=80, interval=100, blit=False)
 
-# --- Save GIF ---
-ani.save("wave_interference_colored.gif", writer="pillow")
-plt.close()
-
-print("✅ GIF saved as wave_interference_colored.gif")
+# --- Display in Colab ---
+HTML(ani.to_jshtml())
 ```
+[Visit My Collab](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=7Irx9uUNz5Eo&line=33&uniqifier=1)
 ![wave_interference_colored](https://github.com/user-attachments/assets/63909aaf-fe77-4e8a-b76f-f5561ae9b824)
 
 ```python
