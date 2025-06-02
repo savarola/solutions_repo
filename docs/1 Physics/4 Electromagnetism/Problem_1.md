@@ -57,15 +57,10 @@ We allow variations in:
 
 Phenomena to observe:
 
-- **Larmor radius**:  
-  $$
-  r_L = \frac{mv_\perp}{qB}
-  $$
+Larmor radius: $r_L = \frac{mv_\perp}{qB}$
 
-- **Drift velocity**:  
-  $$
-  \vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2}
-  $$
+Drift velocity: $\vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2}$
+
 
 ### 4️⃣ Visualization
 
@@ -277,20 +272,14 @@ plt.show()
 
 ## 🧮 Equivalent Resistance Formulas
 
-- **Series combination**:  
-  $$
-  R_{\text{eq}} = R_1 + R_2 + \dots + R_n
-  $$
+### 🔌 Resistor Combinations
 
-- **Parallel combination**:  
-  $$
-  \frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
-  $$
+- **Series combination**: $R_{\text{eq}} = R_1 + R_2 + \dots + R_n$
 
-- **Delta to Y (symmetric case)**:  
-  $$
-  R_Y = \frac{R_\Delta}{3}
-  $$
+- **Parallel combination**: $\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}$
+
+- **Delta to Y (symmetric case)**: $R_Y = \frac{R_\Delta}{3}$
+
 
 ---
 
