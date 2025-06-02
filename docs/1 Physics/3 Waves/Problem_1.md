@@ -49,7 +49,7 @@ Where $r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}$ is the distance from the $i^{th}$
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
 
 # --- Grid Setup ---
@@ -58,56 +58,44 @@ x = np.linspace(-10, 10, size)
 y = np.linspace(-10, 10, size)
 X, Y = np.meshgrid(x, y)
 
-# --- Wave Function ---
-def wave_source(X, Y, x0, y0, t, wavelength=1, speed=1):
-    r = np.sqrt((X - x0)**2 + (Y - y0)**2)
-    k = 2 * np.pi / wavelength
-    omega = k * speed
-    return np.sin(k * r - omega * t) / (r + 1e-6)  # avoid division by zero
+# --- Dalga Parametreleri ---
+wavelength = 2
+speed = 1
+k = 2 * np.pi / wavelength
+omega = k * speed
 
-# --- Source Patterns ---
-def get_sources(pattern):
-    if pattern == "one":
-        return [(0, 0)]
-    elif pattern == "two":
-        return [(-3, 0), (3, 0)]
-    elif pattern == "triangle":
-        R = 4
-        angles = np.linspace(0, 2*np.pi, 4)[:-1]
-        return [(R * np.cos(a), R * np.sin(a)) for a in angles]
-    elif pattern == "pentagon":
-        R = 5
-        angles = np.linspace(0, 2*np.pi, 6)[:-1]
-        return [(R * np.cos(a), R * np.sin(a)) for a in angles]
+# --- Kaynaklar ---
+source1 = (-3, 0)
+source2 = (3, 0)
 
-# --- Patterns to Animate ---
-patterns = ["one", "two", "triangle", "pentagon"]
-
-# --- Plot Setup ---
-fig, ax = plt.subplots(figsize=(6, 6))
-heatmap = ax.imshow(np.zeros((size, size)), cmap='coolwarm', vmin=-1, vmax=1, extent=(-10, 10, -10, 10))
-title = ax.set_title("")
+# --- Animasyon Ayarları ---
+fig, ax = plt.subplots(figsize=(6,6))
+heatmap = ax.imshow(np.zeros((size, size)), cmap='coolwarm', vmin=-1, vmax=1, extent=(-10,10,-10,10))
+ax.set_title("Two Source Interference Pattern")
 ax.set_xlabel("x")
 ax.set_ylabel("y")
 
-# --- Frame Update Function ---
-def update(frame):
-    pattern = patterns[(frame // 20) % len(patterns)]
-    t = frame % 20
-    sources = get_sources(pattern)
-    Z = sum(wave_source(X, Y, sx, sy, t) for sx, sy in sources)
+# --- Frame Güncelleme ---
+def update(t):
+    r1 = np.sqrt((X - source1[0])**2 + (Y - source1[1])**2)
+    r2 = np.sqrt((X - source2[0])**2 + (Y - source2[1])**2)
+
+    wave1 = np.sin(k * r1 - omega * t) / (r1 + 1e-6)
+    wave2 = np.sin(k * r2 - omega * t) / (r2 + 1e-6)
+
+    Z = wave1 + wave2
     heatmap.set_data(Z)
-    title.set_text(f"Wave Interference: {pattern.capitalize()} ({len(sources)} source{'s' if len(sources) > 1 else ''})")
-    return heatmap, title
+    return [heatmap]
 
-# --- Create Animation ---
-ani = animation.FuncAnimation(fig, update, frames=80, interval=100, blit=False)
+ani = FuncAnimation(fig, update, frames=np.linspace(0, 2*np.pi, 60), interval=100)
 
-# --- Display in Colab ---
+# --- Colab için animasyonu göster ---
 HTML(ani.to_jshtml())
 ```
-[Visit My Collab](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=7Irx9uUNz5Eo&line=33&uniqifier=1)
-![wave_interference_colored](https://github.com/user-attachments/assets/63909aaf-fe77-4e8a-b76f-f5561ae9b824)
+[Visit My Collab](https://colab.research.google.com/drive/109lrp068uFr13UuE4VJkmi05Ge6HLrbp#scrollTo=CGwgsb_y18_9&line=9&uniqifier=1)
+
+![interference](https://github.com/user-attachments/assets/3a817411-3639-4f87-8292-7e606cd68642)
+
 
 ```python
 import numpy as np
