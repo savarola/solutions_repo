@@ -261,6 +261,95 @@ def example_case_2():
 
 example_case_2()
 ```
+Equivalent Resistance (Case 2): 6.60 Ω
+
+![download](https://github.com/user-attachments/assets/80058279-0536-4db8-a69c-6080b4032e91)
+
+```python
+import matplotlib.pyplot as plt
+import networkx as nx
+
+def draw_parallel_and_series():
+    fig, axs = plt.subplots(2, 2, figsize=(14, 10))
+    fig.suptitle("Building Blocks: Parallel and Series Configuration", fontsize=16)
+
+    # --- PARALLEL CONFIGURATION ---
+    # Before
+    G1 = nx.DiGraph()
+    G1.add_edges_from([("I1", "o1"), ("In", "o1"),
+                       ("o1", "p1"), ("o1", "p2"),
+                       ("p1", "o3"), ("p2", "o3"),
+                       ("o3", "D1"), ("o3", "D4")])
+    pos1 = {
+        "I1": (0, 2), "In": (0, 0), "o1": (1, 1),
+        "p1": (2, 2), "p2": (2, 0), "o3": (3, 1),
+        "D1": (4, 2), "D4": (4, 0)
+    }
+    nx.draw(G1, pos1, ax=axs[0, 0], with_labels=True,
+            node_color='skyblue', edge_color='dimgray', node_size=800)
+    nx.draw_networkx_edge_labels(G1, pos1, ax=axs[0, 0], edge_labels={
+        ("o1", "p1"): "R1", ("o1", "p2"): "R2"
+    }, font_color='navy')
+    axs[0, 0].set_title("Before (Parallel)")
+    axs[0, 0].axis('off')
+
+    # After
+    G2 = nx.DiGraph()
+    G2.add_edges_from([("I1", "o1"), ("In", "o1"),
+                       ("o1", "o3"), ("o3", "D1"), ("o3", "Dm")])
+    pos2 = {
+        "I1": (0, 2), "In": (0, 0), "o1": (1, 1),
+        "o3": (2, 1), "D1": (3, 2), "Dm": (3, 0)
+    }
+    nx.draw(G2, pos2, ax=axs[0, 1], with_labels=True,
+            node_color='mediumorchid', edge_color='dimgray', node_size=800)
+    nx.draw_networkx_edge_labels(G2, pos2, ax=axs[0, 1], edge_labels={
+        ("o1", "o3"): "R12"
+    }, font_color='navy')
+    axs[0, 1].set_title("After (1/R1 + 1/R2 = 1/R12)")
+    axs[0, 1].axis('off')
+
+    # --- SERIES CONFIGURATION ---
+    # Before
+    G3 = nx.DiGraph()
+    G3.add_edges_from([("I1", "o1"), ("In", "o1"),
+                       ("o1", "o2"), ("o2", "o3"),
+                       ("o3", "D1"), ("o3", "D4")])
+    pos3 = {
+        "I1": (0, 2), "In": (0, 0), "o1": (1, 1),
+        "o2": (2, 1), "o3": (3, 1), "D1": (4, 2), "D4": (4, 0)
+    }
+    node_colors_series = ['skyblue'] * 7
+    node_colors_series[3] = 'orchid'  # o2
+    nx.draw(G3, pos3, ax=axs[1, 0], with_labels=True,
+            node_color=node_colors_series, edge_color='dimgray', node_size=800)
+    nx.draw_networkx_edge_labels(G3, pos3, ax=axs[1, 0], edge_labels={
+        ("o1", "o2"): "R1", ("o2", "o3"): "R2"
+    }, font_color='navy')
+    axs[1, 0].set_title("Before (Series)")
+    axs[1, 0].axis('off')
+
+    # After
+    G4 = nx.DiGraph()
+    G4.add_edges_from([("I1", "o1"), ("In", "o1"),
+                       ("o1", "o3"), ("o3", "D1"), ("o3", "Dm")])
+    pos4 = {
+        "I1": (0, 2), "In": (0, 0), "o1": (1, 1),
+        "o3": (2, 1), "D1": (3, 2), "Dm": (3, 0)
+    }
+    nx.draw(G4, pos4, ax=axs[1, 1], with_labels=True,
+            node_color='skyblue', edge_color='dimgray', node_size=800)
+    nx.draw_networkx_edge_labels(G4, pos4, ax=axs[1, 1], edge_labels={
+        ("o1", "o3"): "R12"
+    }, font_color='navy')
+    axs[1, 1].set_title("After (R12 = R1 + R2)")
+    axs[1, 1].axis('off')
+
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    plt.show()
+
+draw_parallel_and_series()
+```
 ---
 
 ## 🔄 Handling Nested Combinations
