@@ -117,6 +117,63 @@ Where:
 - $C$ = number of crosses (intersections with a line)
 
 ---
+![image-6](https://github.com/user-attachments/assets/b9063004-3ef0-4a92-8cc4-a272f7fb1b95)
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def estimate_pi_buffon(num_needles):
+    length = 1.0      # Needle length
+    spacing = 1.0     # Line spacing
+    crosses = 0
+    x_start = []
+    y_start = []
+    x_end = []
+    y_end = []
+    cross_flags = []
+
+    for _ in range(num_needles):
+        y_center = np.random.uniform(0, spacing / 2)
+        angle = np.random.uniform(0, np.pi / 2)
+        y_proj = (length / 2) * np.sin(angle)
+
+        if y_proj >= y_center:
+            crosses += 1
+            cross_flags.append(True)
+        else:
+            cross_flags.append(False)
+
+        x0 = 0
+        y0 = y_center
+        x1 = (length / 2) * np.cos(angle)
+        y1 = (length / 2) * np.sin(angle)
+
+        x_start.append(x0 - x1)
+        y_start.append(y0 - y1)
+        x_end.append(x0 + x1)
+        y_end.append(y0 + y1)
+
+    if crosses == 0:
+        pi_est = None
+        print("No crosses occurred — try more drops.")
+    else:
+        pi_est = (2 * num_needles) / crosses
+
+    # Plotting
+    plt.figure(figsize=(8, 4))
+    for i in range(num_needles):
+        color = 'green' if cross_flags[i] else 'gray'
+        plt.plot([x_start[i], x_end[i]], [y_start[i], y_end[i]], color=color, alpha=0.5)
+
+    for y in np.arange(0, spacing * 2, spacing):
+        plt.axhline(y=y, color='black', linewidth=0.5)
+
+    plt.title(f"Buffon’s Needle Simulation\nNeedles: {num_needles}, π ≈ {pi_est:.5f}" if pi_est else "No estimate")
+    plt.axis('equal')
+    plt.grid(True)
+    plt.show()
+ ```
 
 ### 🧪 2. Simulation
 
