@@ -208,8 +208,105 @@
 <li>The process is repeated:</li>
 <li>Detect and reduce series connections.</li>
 <li>Detect and reduce parallel connections.</li>
-<li>Continue until only a single edge remains between START and END.</li>
+<li>Continue until only a single edge remains between START and END.
+<img alt="1" src="https://github.com/user-attachments/assets/095641be-3a61-4f93-a552-4db3664c0961"/>
+<img alt="2" src="https://github.com/user-attachments/assets/0703578e-f61d-41db-8d19-1e1f6ddbf887"/>
+<img alt="3" src="https://github.com/user-attachments/assets/ad5a9ea3-770f-4cb6-880d-d73620ba3c36"/>
+<img alt="4" src="https://github.com/user-attachments/assets/883d098b-1591-4de2-82ea-fd0c0ce20e0a"/>
+<img alt="5" src="https://github.com/user-attachments/assets/ab6b242e-ff2d-4a41-ae87-6688695b4297"/></li>
 </ul>
+<p>```python
+import networkx as nx
+import matplotlib.pyplot as plt</p>
+<p>def draw_graph(G, step_title):
+    pos = nx.spring_layout(G, seed=42)
+    plt.figure(figsize=(6, 4))
+    edge_labels = {}
+    for u, v, data in G.edges(data=True):
+        label = f"{data['resistance']}Ω"
+        if G.number_of_edges(u, v) &gt; 1:
+            label = ', '.join(f"{d['resistance']}Ω" for d in G.get_edge_data(u, v).values())
+        edge_labels[(u, v)] = label</p>
+<pre><code>nx.draw(
+    G, pos,
+    with_labels=True,
+    node_color='tomato',
+    node_size=800,
+    edge_color='darkgreen',
+    width=2,
+    font_weight='bold',
+    font_color='black'
+)
+
+nx.draw_networkx_edge_labels(
+    G, pos,
+    edge_labels=edge_labels,
+    font_color='navy',
+    font_size=9
+)
+
+plt.title(step_title)
+plt.axis('off')
+plt.show()
+</code></pre>
+<p>def combine_series(G):
+    changed = True
+    while changed:
+        changed = False
+        for node in list(G.nodes):
+            if G.degree(node) == 2 and node not in ("B+", "B-"):
+                neighbors = list(G.neighbors(node))
+                if len(neighbors) == 2:
+                    u, v = neighbors
+                    edge1 = next(iter(G.get_edge_data(u, node).values()))
+                    edge2 = next(iter(G.get_edge_data(node, v).values()))
+                    R_new = edge1['resistance'] + edge2['resistance']
+                    G.remove_node(node)
+                    G.add_edge(u, v, resistance=R_new)
+                    changed = True
+                    draw_graph(G, f"{u} - {v} (series): {R_new}Ω")
+                    break</p>
+<p>def combine_parallel(G):
+    to_process = list(G.edges(keys=True))
+    seen = set()
+    for u, v, k in to_process:
+        if (u, v) in seen or (v, u) in seen:
+            continue
+        if G.number_of_edges(u, v) &gt; 1:
+            resistances = [d['resistance'] for d in G.get_edge_data(u, v).values()]
+            R_parallel = 1 / sum(1/r for r in resistances)
+            G.remove_edges_from([(u, v, key) for key in G.get_edge_data(u, v).keys()])
+            G.add_edge(u, v, resistance=R_parallel)
+            draw_graph(G, f"{u} - {v} (parallel): {R_parallel:.2f}Ω")
+        seen.add((u, v))</p>
+<p>def reduce_graph(G):
+    draw_graph(G, "Initial Graph")
+    while True:
+        nodes_before = len(G.nodes)
+        combine_series(G)
+        combine_parallel(G)
+        if len(G.nodes) == nodes_before:
+            break
+    return G</p>
+<p>def get_equivalent_resistance(G, source, target):
+    if G.has_edge(source, target):
+        return next(iter(G.get_edge_data(source, target).values()))['resistance']
+    else:
+        return None</p>
+<p>def example_case_1():
+    G = nx.MultiGraph()
+    G.add_nodes_from(["B+", "B-", "A", "B", "C"])
+    G.add_edge("B+", "A", resistance=2)  # R2
+    G.add_edge("A", "B", resistance=3)   # R3
+    G.add_edge("B+", "B", resistance=5)  # R1
+    G.add_edge("B", "C", resistance=4)   # R4
+    G.add_edge("C", "B-", resistance=6)  # R5</p>
+<pre><code>reduce_graph(G)
+Req = get_equivalent_resistance(G, "B+", "B-")
+print(f"Equivalent Resistance (Case 1): {Req:.2f} Ohms")
+</code></pre>
+<p>example_case_1()
+```</p>
 <hr/>
 <h2 id="handling-nested-combinations">🔄 Handling Nested Combinations</h2>
 <p>This algorithm is recursive or iterative in nature:
