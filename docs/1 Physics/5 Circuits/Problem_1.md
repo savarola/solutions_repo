@@ -47,6 +47,7 @@ The circuit is simplified using an iterative algorithm based on identifying **se
   - Detect and reduce series connections.
   - Detect and reduce parallel connections.
 - Continue until only a single edge remains between START and END.
+
 ![1](https://github.com/user-attachments/assets/095641be-3a61-4f93-a552-4db3664c0961)
 ![2](https://github.com/user-attachments/assets/0703578e-f61d-41db-8d19-1e1f6ddbf887)
 ![3](https://github.com/user-attachments/assets/ad5a9ea3-770f-4cb6-880d-d73620ba3c36)
@@ -152,7 +153,9 @@ def example_case_1():
 
 example_case_1()
 ```
+
 Equivalent Resistance (Case 1): 12.50 Ohms
+
 ![1](https://github.com/user-attachments/assets/dcbfe595-81c4-4230-99e6-12b4b3307deb)
 ![2](https://github.com/user-attachments/assets/eb207813-05e4-4f45-82fc-a1971017d9e2)
 ![3](https://github.com/user-attachments/assets/78b6d09b-5ac8-45e6-83ed-02bb1e2d2aef)
@@ -261,6 +264,7 @@ def example_case_2():
 
 example_case_2()
 ```
+
 Equivalent Resistance (Case 2): 6.60 Ω
 
 ![download](https://github.com/user-attachments/assets/80058279-0536-4db8-a69c-6080b4032e91)
@@ -350,6 +354,7 @@ def draw_parallel_and_series():
 
 draw_parallel_and_series()
 ```
+
 ---
 
 ## 🔄 Handling Nested Combinations
