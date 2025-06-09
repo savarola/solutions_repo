@@ -92,7 +92,41 @@
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#1-theoretical-foundation">📐 1. Theoretical Foundation</a>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#2-simulation">🧪 2. Simulation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-visualization">📊 3. Visualization</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-analysis">📈 4. Analysis</a>
+</li>
 </ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#part-2-estimating-pi-using-buffons-needle">Part 2: Estimating \(\pi\) Using Buffon's Needle</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-theoretical-foundation_1">📐 1. Theoretical Foundation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-simulation_1">🧪 2. Simulation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-visualization_1">📊 3. Visualization</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-analysis_1">📈 4. Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#definitions-and-key-concepts">🧾 Definitions and Key Concepts</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deliverables">📈 Deliverables</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-markdown-document">1. Markdown Document:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-python-simulations">2. Python Simulations:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-visual-outputs">3. Visual Outputs:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-comparative-analysis">4. Comparative Analysis:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#references">🔗 References</a>
 </li>
 </ul>
 </li>
@@ -207,20 +241,24 @@ A_{\text{square}} = (2)^2 = 4
 \pi \approx 4 \cdot \left( \frac{\text{Points inside circle}}{\text{Total points}} \right)
 \]</div>
 <p><img alt="1 5" src="https://github.com/user-attachments/assets/5769c175-baa4-4e20-bf84-15a59dbf311c"/></p>
-<p>```python
-import numpy as np
-import matplotlib.pyplot as plt</p>
-<h1 id="nokta-says">Nokta sayısı</h1>
-<p>n = 10000</p>
-<h1 id="rastgele-x-y-noktalar-uret">Rastgele (x, y) noktaları üret</h1>
-<p>x = np.random.uniform(-1, 1, n)
-y = np.random.uniform(-1, 1, n)</p>
-<h1 id="dairenin-icinde-olup-olmadgn-kontrol-et">Dairenin içinde olup olmadığını kontrol et</h1>
-<p>inside = x<strong>2 + y</strong>2 &lt;= 1</p>
-<h1 id="pi-tahmini">Pi tahmini</h1>
-<p>pi_estimate = 4 * np.sum(inside) / n</p>
-<h1 id="gorsellestirme">Görselleştirme</h1>
-<p>plt.figure(figsize=(6, 6))
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Nokta sayısı
+n = 10000
+
+# Rastgele (x, y) noktaları üret
+x = np.random.uniform(-1, 1, n)
+y = np.random.uniform(-1, 1, n)
+
+# Dairenin içinde olup olmadığını kontrol et
+inside = x**2 + y**2 &lt;= 1
+
+# Pi tahmini
+pi_estimate = 4 * np.sum(inside) / n
+
+# Görselleştirme
+plt.figure(figsize=(6, 6))
 plt.scatter(x[inside], y[inside], s=1, color='darkgreen', label='Inside Circle')
 plt.scatter(x[~inside], y[~inside], s=1, color='crimson', label='Outside Circle')
 plt.gca().set_aspect('equal')
@@ -228,7 +266,7 @@ plt.title(f"Monte Carlo π Estimate ({n} points)\nπ ≈ {pi_estimate:.6f}")
 plt.legend()
 plt.grid(True)
 plt.show()
- ```</p>
+</code></pre>
 <hr/>
 <h3 id="2-simulation">🧪 2. Simulation</h3>
 <p>Steps:
