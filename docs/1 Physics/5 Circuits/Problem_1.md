@@ -54,7 +54,7 @@ The circuit is simplified using an iterative algorithm based on identifying **se
 ![4](https://github.com/user-attachments/assets/883d098b-1591-4de2-82ea-fd0c0ce20e0a)
 ![5](https://github.com/user-attachments/assets/ab6b242e-ff2d-4a41-ae87-6688695b4297)
 
- ```python
+```python
 import networkx as nx
 import matplotlib.pyplot as plt
 
