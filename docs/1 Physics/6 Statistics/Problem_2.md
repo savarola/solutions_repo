@@ -41,7 +41,7 @@ $$
 
 ![1 5](https://github.com/user-attachments/assets/5769c175-baa4-4e20-bf84-15a59dbf311c)
 
- ```python
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -67,7 +67,7 @@ plt.title(f"Monte Carlo π Estimate ({n} points)\nπ ≈ {pi_estimate:.6f}")
 plt.legend()
 plt.grid(True)
 plt.show()
- ```
+```
 ---
 
 ### 🧪 2. Simulation
