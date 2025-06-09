@@ -110,11 +110,12 @@ Hence, larger $n$ reduces the spread of the sample mean histogram.
 - CLT holds regardless of population shape, provided sample size is sufficiently large
 - Larger $n$ and smaller $\sigma$ lead to faster convergence
 - CLT provides the mathematical foundation for many real-world statistical methods
+
 ![1](https://github.com/user-attachments/assets/1ade8248-68ed-4044-9269-674c4b8a457f)
 ![2](https://github.com/user-attachments/assets/9bd87e44-6824-4bbd-9257-7645422e68b8)
 ![3](https://github.com/user-attachments/assets/06d1d8ca-a513-41c2-a3e6-86cc63c2e1e3)
 
- ```python
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -167,7 +168,7 @@ for name, population in populations.items():
     plt.suptitle(f"Sampling Distribution of the Mean - {name}", fontsize=18)
     plt.tight_layout()
     plt.show()
-     ```
+```
 
 ## 🔗 References
 
