@@ -263,59 +263,63 @@
 <ul>
 <li>CLT holds regardless of population shape, provided sample size is sufficiently large</li>
 <li>Larger <span class="arithmatex">\(n\)</span> and smaller <span class="arithmatex">\(\sigma\)</span> lead to faster convergence</li>
-<li>CLT provides the mathematical foundation for many real-world statistical methods
-<img alt="1" src="https://github.com/user-attachments/assets/1ade8248-68ed-4044-9269-674c4b8a457f"/>
-<img alt="2" src="https://github.com/user-attachments/assets/9bd87e44-6824-4bbd-9257-7645422e68b8"/>
-<img alt="3" src="https://github.com/user-attachments/assets/06d1d8ca-a513-41c2-a3e6-86cc63c2e1e3"/></li>
+<li>CLT provides the mathematical foundation for many real-world statistical methods</li>
 </ul>
-<p>```python
-import numpy as np
+<p><img alt="1" src="https://github.com/user-attachments/assets/1ade8248-68ed-4044-9269-674c4b8a457f"/>
+<img alt="2" src="https://github.com/user-attachments/assets/9bd87e44-6824-4bbd-9257-7645422e68b8"/>
+<img alt="3" src="https://github.com/user-attachments/assets/06d1d8ca-a513-41c2-a3e6-86cc63c2e1e3"/></p>
+<pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy.stats import gaussian_kde</p>
-<h1 id="stil-ayar">Stil ayarı</h1>
-<p>sns.set(style="whitegrid")</p>
-<h1 id="populasyonlarn-tanmlanmas">Popülasyonların tanımlanması</h1>
-<p>uniform_population = np.random.uniform(0, 1, 10000)
+from scipy.stats import gaussian_kde
+
+# Stil ayarı
+sns.set(style="whitegrid")
+
+# Popülasyonların tanımlanması
+uniform_population = np.random.uniform(0, 1, 10000)
 exponential_population = np.random.exponential(1, 10000)
-binomial_population = np.random.binomial(n=1, p=0.5, size=10000)</p>
-<h1 id="tum-populasyonlar-bir-sozlukte-tut">Tüm popülasyonları bir sözlükte tut</h1>
-<p>populations = {
+binomial_population = np.random.binomial(n=1, p=0.5, size=10000)
+
+# Tüm popülasyonları bir sözlükte tut
+populations = {
     'Uniform': uniform_population,
     'Exponential': exponential_population,
     'Binomial': binomial_population
-}</p>
-<h1 id="farkl-orneklem-buyuklukleri">Farklı örneklem büyüklükleri</h1>
-<p>sample_sizes = [5, 10, 30, 50]</p>
-<h1 id="tum-populasyonlar-icin-islem">Tüm popülasyonlar için işlem</h1>
-<p>for name, population in populations.items():
-    plt.figure(figsize=(16, 10))</p>
-<pre><code>for i, size in enumerate(sample_sizes, 1):
-    sample_means = []
-    for _ in range(1000):
-        sample = np.random.choice(population, size=size)
-        sample_means.append(np.mean(sample))
+}
 
-    # Alt grafik oluştur
-    plt.subplot(2, 2, i)
+# Farklı örneklem büyüklükleri
+sample_sizes = [5, 10, 30, 50]
 
-    # Histogram
-    sns.histplot(sample_means, bins=30, color="orchid", stat="frequency", kde=False)
+# Tüm popülasyonlar için işlem
+for name, population in populations.items():
+    plt.figure(figsize=(16, 10))
 
-    # KDE (manuel çizim)
-    kde = gaussian_kde(sample_means)
-    x_vals = np.linspace(min(sample_means), max(sample_means), 200)
-    y_vals = kde(x_vals) * len(sample_means) * (max(sample_means) - min(sample_means)) / 30
-    plt.plot(x_vals, y_vals, color='darkmagenta', linewidth=2)
+    for i, size in enumerate(sample_sizes, 1):
+        sample_means = []
+        for _ in range(1000):
+            sample = np.random.choice(population, size=size)
+            sample_means.append(np.mean(sample))
 
-    plt.title(f"{name} Distribution - Sample Size {size}")
-    plt.xlabel("Sample Mean")
-    plt.ylabel("Frequency")
+        # Alt grafik oluştur
+        plt.subplot(2, 2, i)
 
-plt.suptitle(f"Sampling Distribution of the Mean - {name}", fontsize=18)
-plt.tight_layout()
-plt.show()
- ```
+        # Histogram
+        sns.histplot(sample_means, bins=30, color="orchid", stat="frequency", kde=False)
+
+        # KDE (manuel çizim)
+        kde = gaussian_kde(sample_means)
+        x_vals = np.linspace(min(sample_means), max(sample_means), 200)
+        y_vals = kde(x_vals) * len(sample_means) * (max(sample_means) - min(sample_means)) / 30
+        plt.plot(x_vals, y_vals, color='darkmagenta', linewidth=2)
+
+        plt.title(f"{name} Distribution - Sample Size {size}")
+        plt.xlabel("Sample Mean")
+        plt.ylabel("Frequency")
+
+    plt.suptitle(f"Sampling Distribution of the Mean - {name}", fontsize=18)
+    plt.tight_layout()
+    plt.show()
 </code></pre>
 <h2 id="references">🔗 References</h2>
 <ul>
